@@ -23,14 +23,14 @@ public class StudentController {
   }
 
   @PostMapping
-  @ResponseStatus(HttpStatus.CREATED)
-  public void addStudent(@RequestBody Student student) {
+  public ResponseEntity<Void> addStudent(@RequestBody Student student) {
     studentService.addStudent(student);
+    return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 
   @DeleteMapping(path = "/{id}")
-  @ResponseStatus(HttpStatus.ACCEPTED)
-  public void deleteStudent(@PathVariable(name = "id") UUID id) {
+  public ResponseEntity<Void> deleteStudent(@PathVariable(name = "id") UUID id) {
     studentService.deleteStudent(id);
+    return ResponseEntity.accepted().build();
   }
 }
